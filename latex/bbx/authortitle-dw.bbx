@@ -1,7 +1,7 @@
 % authortitle-dw.bbx, Dominik Waßenhoven 2016
 
 \ProvidesFile{authortitle-dw.bbx}[2016/12/06 v1.7 biblatex bibliography style]
-
+  
 \RequireBibliographyStyle{standard-dw}
 
 \newbool{bbx:annotation}
@@ -107,7 +107,7 @@
 \def\bbx@opt@idemfont@bold{%
   \global\booltrue{bbx:idemfont}%
   \renewcommand{\bbx@idemfont}{\mkbibbold}}
-
+      
 \DeclareBibliographyOption{ibidemfont}[normal]{%
   \ifcsdef{bbx@opt@ibidemfont@#1}
     {\csuse{bbx@opt@ibidemfont@#1}}
@@ -167,7 +167,7 @@
   \renewcommand{\bbx@edstringfont}{}}
 \def\bbx@opt@edstringfont@namefont{%
   \renewcommand{\bbx@edstringfont}{\bbx@namefont}}
-
+  
 \ExecuteBibliographyOptions{
   edbyidem=true,
   editorstring=parens,
@@ -288,7 +288,7 @@
     {\ifbool{bbx:acronym}
       {\mkbibacro{#1}\isdot}
       {#1\isdot}}
-    {#1\isdot}}
+    {#1\isdot}} 
 
 %% Umdefinierung von finentry für 'annotation' und 'library'
 \renewbibmacro*{finentry}{%
@@ -324,7 +324,7 @@
 \InitializeBibliographyStyle{%
   \let\bbx@lasthash\undefined}
 
-% Nachnamen von Einträgen mit 'options = {oldauthor=true}'
+% Nachnamen von Einträgen mit 'options = {oldauthor=true}' 
 % oder 'options = {oldbookauthor=true}'
 % werden nicht in der Schrift von 'namefont' gesetzt
 % Formatierung der Nachnamen entsprechend der Option 'namefont'
@@ -354,7 +354,7 @@
  }
   {#1}
   {\bbx@namefont{#1}}}
-
+	      
 % Formatierung der Vornamen entsprechend der Option 'firstnamefont'
 \renewcommand*{\mkbibnamegiven}[1]{%
  \ifboolexpr{
@@ -414,7 +414,7 @@
     {\bbx@namefont{#1}}
     {\bbx@firstnamefont{#1}}}}
 
-% suffix richtet sich nach 'firstnamefont'
+% suffix richtet sich nach 'firstnamefont' 
 \renewcommand*{\mkbibnamesuffix}[1]{%
  \ifboolexpr{
  ( bool {bbx:oldauthor}
@@ -447,7 +447,7 @@
 % werden keine Kapitälchen o.ä. bei Wiederholungszitaten ('Ders.') gesetzt
 % ansonsten Formatierung entsprechend der Option 'idemfont',
 % falls diese nicht vorhanden ist, wird der Wert von 'namefont' übernommen
-\newcommand*{\mkidem}[1]{%
+\newcommand*{\mkidem}[1]{% 
   \ifboolexpr{
     bool {bbx:oldauthor}
     and
@@ -457,13 +457,13 @@
 	  {\ifbool{bbx:idemfont}
 	    {\bbx@idemfont{#1}}
 	    {\bbx@namefont{#1}}}}
-
+		      
 %% Punkt zwischen Untertitel und Titelzusatz ([book|main]titleaddon)
 \renewbibmacro*{title}{%
   \iffieldundef{title}
     {}
     {\printtext[title]{%
-       \printfield[cursiv]{title}%
+       \printfield[titlecase]{title}%
        \setunit{\subtitlepunct}%
        \printfield[titlecase]{subtitle}}%
      \setunit{\titleaddonpunct}%
@@ -508,7 +508,7 @@
           {\usebibmacro{origloc+origpub+origyear}}}
         {\iffieldundef{origyear}
           {\blxdw@warning{%
-             Field 'origlocation' is set, but 'origdate' is
+             Field 'origlocation' is set, but 'origdate' is 
              \MessageBreak%
              empty at entry '\abx@field@entrykey'.
              The 'orig' fields \MessageBreak are omitted
@@ -601,7 +601,7 @@
   \ifbool{bbx:editorstring}
     {\addspace}
     {\addcomma\space}}
-
+                      
 %% Herausgeber ('Hrsg.') je nach Option editorstring
 \renewbibmacro*{editorstrg}{%
   \iffieldundef{editortype}
@@ -675,7 +675,7 @@
            \clearname{afterword}}
           {}}}%
   \bbx@edstringfont{\bbx@editorstring{\bibstring{\abx@tempa}}}}
-
+        
 %% Option 'editorstring=brackets|parens|normal'
 %% Option 'idembib=true|false'
 \renewbibmacro*{editor}{%
@@ -807,11 +807,11 @@
     {\usebibmacro{byeditor+othersstrg}%
      \setunit{\addspace}%
      \ifboolexpr{
-       ( ( ( not test {\ifentrytype{inbook}}% alle außer inbook: author und editor gleich?
+       ( ( ( not test {\ifentrytype{inbook}}% alle außer inbook: author und editor gleich? 
              and
              test {\ifnamesequal{editor}{author}} )
            or
-           ( test {\ifentrytype{inbook}}
+           ( test {\ifentrytype{inbook}} 
              and
              ( test {\ifnameundef{bookauthor}}% inbook ohne bookauthor: author und editor gleich?
                and
@@ -822,7 +822,7 @@
                  test {\ifnamesequal{editor}{bookauthor}} ) ) )
          or
          ( bool {xrefidem}
-           and not
+           and not 
            bool {cbx:authauthxref} ) )
        and
        bool {bbx:edbyidem}
@@ -882,11 +882,11 @@
     test \ifusetranslator
     and
     not test {\ifnameundef{translator}}
-    and
+    and 
       ( ( not test \ifuseeditor )
       or
         ( test \ifuseeditor
-          and
+          and 
           test {\ifnameundef{editor}} ) )
   }
     {\printtext{\bibstring[\mkidem]{idem\thefield{gender}}%
@@ -896,8 +896,8 @@
     {}}
 
 %%%%% %%%%% %%%%% %%%%% %%%%% %%%%% %%%%% %%%%% %%%%%
-%%%%% Makros aus authortitle.bbx (unverändert)  %%%%%
-%%%%% %%%%% %%%%% %%%%% %%%%% %%%%% %%%%% %%%%% %%%%%
+%%%%% Makros aus authortitle.bbx (unverändert)  %%%%% 
+%%%%% %%%%% %%%%% %%%%% %%%%% %%%%% %%%%% %%%%% %%%%% 
 
 \setlength{\bibitemsep}{0pt}
 

@@ -17,6 +17,7 @@
 \newbool{bbx:oldauthor}
 \newbool{bbx:origfields}
 \newbool{bbx:pseudoauthor}
+\newbool{bbx:yearafterauthor}
 \newbool{oldbookauthor}
 \newbool{oldauthor}
 \newbool{pseudoauthor}
@@ -28,6 +29,8 @@
 \DeclareEntryOption{pseudoauthor}[true]{%
   \csuse{bool#1}{pseudoauthor}}
 
+\DeclareBibliographyOption{yearafterauthor}[true]{%
+  \csuse{bool#1}{bbx:yearafterauthor}}
 \DeclareBibliographyOption{annotation}[true]{%
   \csuse{bool#1}{bbx:annotation}}
 \DeclareBibliographyOption{edbyidem}[true]{%
@@ -531,7 +534,8 @@
   \ifbool{bbx:edsuper}
     {\printfield[edition:super]{edition}}
     {}%
-  \usebibmacro{date}%
+  \notbool{bbx:yearafterauthor}
+    {\usebibmacro{date}}{}%
   \newunit}
 
 \newbibmacro{origloc+origpub+origyear}{%
@@ -577,7 +581,9 @@
          {\setunit*{\locationpublisherpunct}%
           \printlist{publisher}%
           \setunit*{\publisherdatepunct}}}}%
-  \usebibmacro{date}}
+  \notbool{bbx:yearafterauthor}
+    {\usebibmacro{date}}{}
+  }
 
 %% Test, ob ein Feld nur eine Zahl beinhaltet
 \newcommand{\bbx@iffieldinteger}[1]{%

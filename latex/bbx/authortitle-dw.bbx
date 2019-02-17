@@ -766,7 +766,10 @@
 \renewbibmacro*{author}{%
   \ifbool{bbx:pseudoauthor}
     {\usebibmacro{author:pseudotrue}}
-    {\usebibmacro{author:pseudofalse}}}
+    {\usebibmacro{author:pseudofalse}}
+	\ifbool{bbx:yearafterauthor}
+      {\printtext[parens]{\usebibmacro{date}}}{}
+	}
 
 \newbibmacro*{author:pseudotrue}{%
   \ifbool{pseudoauthor}
